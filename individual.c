@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <math.h>
 
 #include "essentials.h"
@@ -155,37 +154,13 @@ unsigned int decodage_indiv(Individu* indiv)               //lit la liste de Bit
     return valIndiv;
 }
 
-float qualiteIndivf1(unsigned int valIndiv)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
-                                                obtenue par la fonction "decodage"*/
-{
-    int longIndiv = 8;
-    int A = -1,B = 1;
-    double resultat,X;
+/* Fonction qui calcule la qualité d'un individu à partir de sa valeur,
+    obtenue par la fonction "decodage"*/
 
-    X = (valIndiv / powf(2,longIndiv)) * (B - A) + A;
-    resultat = - powf(X,2);
-    return resultat;
-}
-
-
-float qualiteIndivf2(unsigned int valIndiv)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
-                                                     obtenue par la fonction "decodage"*/
-{
-    int longIndiv = 16;
-    float A = 0.1,B = 5;
-    float resultat,X;
-
-    X = (valIndiv / powf(2,longIndiv)) * (B - A) + A;
-    resultat = - log(X);
-
-    return resultat;
-}
-
-float qualiteIndivf3(unsigned int valIndiv)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
-                                                     obtenue par la fonction "decodage"*/
+float qualiteIndiv(unsigned int valIndiv)
 {
     int longIndiv = 32;
-    float A = (-M_PI),B = M_PI;
+    float A = -M_PI,B = M_PI;
     float resultat,X;
 
     X = (valIndiv / powf(2,longIndiv)) * (B - A) + A;
@@ -197,8 +172,8 @@ float qualiteIndivf3(unsigned int valIndiv)     /*troisième version de la fonct
 Individu* copy_indiv(Individu* indiv1)    //Copie un individu
 {
     Individu* indiv2 = creer_indiv();    //declaration des variables
-    ElemBit* elemParc = malloc(sizeof(ElemBit));
-    elemParc = indiv1->head;
+    ElemBit* elemParc = indiv1->head;
+
     int i;
 
     for(i = 0; i < LONGINDIV; i++)  //on ajoute dans indiv2 chaque bit de indiv1
@@ -209,3 +184,31 @@ Individu* copy_indiv(Individu* indiv1)    //Copie un individu
 
     return indiv2;
 }
+
+/*
+ * Fonction alternative pour la qualite des individus
+ *
+float qualiteIndivAlt1(unsigned int valIndiv)
+{
+    int longIndiv = 8;
+    int A = -1,B = 1;
+    double resultat,X;
+
+    X = (valIndiv / powf(2,longIndiv)) * (B - A) + A;
+    resultat = - powf(X,2);
+    return resultat;
+}
+
+
+float qualiteIndivAlt2(unsigned int valIndiv)
+{
+    int longIndiv = 16;
+    float A = 0.1,B = 5;
+    float resultat,X;
+
+    X = (valIndiv / powf(2,longIndiv)) * (B - A) + A;
+    resultat = - log(X);
+
+    return resultat;
+}
+*/
