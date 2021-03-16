@@ -74,7 +74,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/thoma/Documents/Coding/SimplifiedGenAlgorithm/generalStructs.h">
+		<Unit filename="C:/Users/thoma/Documents/Coding/SimplifiedGenAlgorithm/essentials.h">
 			<Option target="SimplifiedGenAlgorithm"/>
 		</Unit>
 		<Unit filename="C:/Users/thoma/Documents/Coding/SimplifiedGenAlgorithm/individual.c">
