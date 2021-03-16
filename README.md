@@ -1,5 +1,5 @@
 # Simplified genetic algorithm in C
-## made for our LO21 "Algorithms and programming" course
+## Made for our LO21 "Algorithms and programming" course
 Projet de LO21  #Dernière Modif 05/01/2020  23:58
 MIRA Victor SIRVENT Thomas
 
