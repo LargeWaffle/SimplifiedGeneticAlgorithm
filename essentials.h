@@ -10,7 +10,7 @@
 
 #define LONGINDIV 8  // Longueur d'un individu:
 #define PCROISE 0.5  // Probabilité de croisement:
-#define TAILLEPOP 200  // Taille de la population:
+#define TAILLEPOP 201  // Taille de la population:
 #define TSELECT 180  // Taux de sélection:
 #define NGEN 200  // Nombre de générations:
 

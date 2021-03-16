@@ -93,11 +93,10 @@ Population* supprimerQ_pop(Population* Pop)
 Population* init_pop(Population* pop , int taillePop)
 {
     int i;                                              // On declare les variables utilisées ensuite
-    Individu* nvIndiv = malloc(sizeof(Individu));
 
     for(i = 0; i < taillePop; i++)                  // On ajoute un individu jusquà ce que population soit de la bonne taille
     {
-        nvIndiv = creer_indiv();            // On créé et initialise un individu à ajouter
+        Individu* nvIndiv = creer_indiv();            // On créé et initialise un individu à ajouter
         nvIndiv = init_indiv(nvIndiv, LONGINDIV);
         pop = ajouterT_pop(pop, nvIndiv);
     }
@@ -108,11 +107,9 @@ Population* init_pop(Population* pop , int taillePop)
 
 void afficher_pop(Population* Pop)
 {
-    ElemIndiv* ElemInd = malloc(sizeof(ElemIndiv)); // On créé un element qui va parcourir la liste
-
     if(!vide_pop(Pop))
     {
-        ElemInd = Pop->head;
+        ElemIndiv* ElemInd = Pop->head;
         //printf("taille : %d\n", Pop->taillePop);
         for(int i = 0; i < Pop->taillePop; i++) // On affiche les individus
         {
@@ -127,16 +124,14 @@ Population* trier_pop(Population* Pop, ElemIndiv* debut, ElemIndiv* fin)
 {
 
     float pivot, qGauche, qDroite;                     // Initialisation des variables utilisées plus tard
-    ElemIndiv* gauche = malloc(sizeof(ElemIndiv));
-    ElemIndiv* droite = malloc(sizeof(ElemIndiv));
-    Individu* temp = malloc(sizeof(ElemIndiv));
+
     if(!vide_pop(Pop))
     {
         if(debut != fin)                                            // Si la portion de liste étudiée ne comprends pas qu'un élément alors on la trie
         {
             pivot = qualiteIndiv(decodage_indiv(debut->value));         // On choisit le premier élement comme pivot et on positionne droite et gauche à chaque extremité
-            gauche = debut;
-            droite = fin;
+            ElemIndiv* gauche = debut;
+            ElemIndiv* droite = fin;
 
             while(droite != gauche)
             {
@@ -158,13 +153,14 @@ Population* trier_pop(Population* Pop, ElemIndiv* debut, ElemIndiv* fin)
                 if(qGauche == qDroite && droite != gauche)          // On verifie que les deux individus comparés ne sont pas identiques
                 {
                     gauche = gauche->next;
+                    // TODO: look into that
                     qGauche = qualiteIndiv(decodage_indiv(gauche->value));
                 }
                 else
                 {
                     if(qGauche < qDroite)           // Si ils ne le sont pas et que qDroite est superieur à qGauche alors on echange les valeurs de droite et gauche
                     {
-                        temp = gauche->value;
+                        Individu* temp = gauche->value;
                         gauche->value = droite->value;
                         droite->value = temp;
                     }
@@ -187,12 +183,11 @@ Population* trier_pop(Population* Pop, ElemIndiv* debut, ElemIndiv* fin)
 
 Population* select_pop(Population* Pop, int tSelect)
 {
-    ElemIndiv* ElemCopy = malloc(sizeof(ElemIndiv));    // On déclare un element de copie
     int i;
 
     if(!vide_pop(Pop))
     {
-        ElemCopy = Pop->head;
+        ElemIndiv* ElemCopy = Pop->head;            // On déclare un element de copie
 
         for(i = 0; i < TAILLEPOP - tSelect; i++)    // On tronque la liste pour quelle soit de taille tSelect
         {
@@ -211,10 +206,11 @@ Population* select_pop(Population* Pop, int tSelect)
 
 Population* croiser_pop(Population* P1)
 {
-    Individu* indiv1 = creer_indiv();       // Declaration des variables
-    Individu* indiv2 = creer_indiv();
-    ElemIndiv* elemCroise = malloc(sizeof(ElemIndiv));
+    Individu* indiv1;       // Declaration des variables
+    Individu* indiv2;
+    ElemIndiv* elemCroise;
     Population* P2 = creer_pop();
+
     int i, j, rnd1, rnd2;
 
     if(!vide_pop(P1))

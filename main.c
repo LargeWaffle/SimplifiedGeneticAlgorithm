@@ -21,6 +21,9 @@ int main()
         Pop = select_pop(Pop, TSELECT);		// Selection de la population
     }
 
+    printf("Population :\n");
+    afficher_pop(Pop);
+
     printf("\nLe meilleur individu de cette population est :\n");	// Affichage du meilleur individu
     afficher_indiv(Pop->head->value);
     printf("\nQualite : %f\n", qualiteIndiv(decodage_indiv(Pop->head->value)));// Affichage de sa qualité pour faciliter l'étude
