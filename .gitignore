@@ -1,1 +1,7 @@
+# Git ignore to make repo cleaner
+
+# CMake files ignore
 /cmake-build-debug/
+
+# IDE related files ignore
+/.idea/
